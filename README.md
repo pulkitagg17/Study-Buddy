@@ -90,6 +90,27 @@ StudyBuddy AI/
    - select the `studybuddy-extension/` folder
 
 ## 🧪 Testing Boundary
-- Run the backend test suite from inside `backend/`:
-  - `npm run test`
-- If tests are not yet implemented, add Jest and Supertest coverage for `auth` and `session` routes first.
+## 🧪 Testing Boundary
+Run the backend test suite from the `backend/` directory.
+
+```bash
+cd backend
+npm ci
+npm run test
+```
+
+Jest drives the suite and returns a non-zero exit code on failures. Ensure test-time environment variables are available (example):
+
+```bash
+# backend/.env (example)
+JWT_SECRET=replace_me
+MONGODB_URI=mongodb://root:example@localhost:27017/studybuddy_test
+```
+
+To run a single test file:
+
+```bash
+npm run test -- tests/auth.test.ts
+```
+
+Interpret failures by the returned exit code and the Jest output; fix the spec or the implementation accordingly.
